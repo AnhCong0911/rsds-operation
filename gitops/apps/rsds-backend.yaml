@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rsds-backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rsds/rsds-backend
+    targetRevision: main
+    path: deploy/helm/rsds-backend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rsds
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,9 @@
+apiVersion: v2
+name: external-dns
+description: RSDS platform component — external-dns
+type: application
+version: 0.1.0
+dependencies:
+  - name: external-dns
+    version: "*"
+    repository: https://kubernetes.github.io/ingress-nginx

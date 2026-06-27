@@ -1,0 +1,19 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-standard-labels
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: require-labels
+      match:
+        any:
+          - resources:
+              kinds: [Deployment, StatefulSet]
+      validate:
+        message: "Deployments must include app.kubernetes.io/name and app.kubernetes.io/part-of"
+        pattern:
+          metadata:
+            labels:
+              app.kubernetes.io/name: "?*"
+              app.kubernetes.io/part-of: "?*"

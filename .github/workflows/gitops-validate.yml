@@ -1,0 +1,17 @@
+name: GitOps Validate
+
+on:
+  pull_request:
+    paths:
+      - 'gitops/**'
+
+jobs:
+  kustomize:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        overlay: [dev, staging, prod]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: imranismail/setup-kustomize@v2
+      - run: kustomize build gitops/overlays/${{ matrix.overlay }}

@@ -1,0 +1,23 @@
+name: Terraform Plan
+
+on:
+  pull_request:
+    paths:
+      - 'terraform/**'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, staging, prod]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-terraform
+        with:
+          aws-region: us-east-1
+      - working-directory: terraform/environments/${{ matrix.environment }}
+        run: |
+          terraform init -backend=false
+          terraform validate
+          terraform plan -var-file=terraform.tfvars -input=false

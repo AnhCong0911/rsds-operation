@@ -1,0 +1,5 @@
+apiVersion: v2
+name: rsds-common
+description: Shared Helm library chart for RSDS
+type: library
+version: 0.1.0

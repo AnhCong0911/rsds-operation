@@ -1,0 +1,12 @@
+apiVersion: v2
+name: rsds-platform
+description: Umbrella chart for RSDS platform components
+type: application
+version: 0.1.0
+dependencies:
+  - name: ingress-nginx
+    version: 0.1.0
+    repository: "file://../../platform/ingress-nginx"
+  - name: cert-manager
+    version: 0.1.0
+    repository: "file://../../platform/cert-manager"

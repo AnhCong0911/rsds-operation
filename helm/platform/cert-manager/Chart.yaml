@@ -1,0 +1,9 @@
+apiVersion: v2
+name: cert-manager
+description: RSDS platform component — cert-manager
+type: application
+version: 0.1.0
+dependencies:
+  - name: cert-manager
+    version: "*"
+    repository: https://kubernetes.github.io/ingress-nginx
